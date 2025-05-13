@@ -1,0 +1,118 @@
+minio server ~/minio-data --console-address ":9001"
+pg_ctl -D /opt/homebrew/var/postgresql@14 start
+pg_ctl -D /opt/homebrew/var/postgresql@14 stop
+brew services start/stop redis
+redis-cli
+redis-cli monitor
+
+CACHE ORGANIZATION AS WELL AS USER -> REDIS
+
+https://www.npmjs.com/package/pgvector#prisma
+
+DEDICATED VECTOR DB SERVICE?
+
+- HANDLE ECNRYPTION FOR BILLING ADDRESS IN DATABASE
+
+-- remove cron email services from Frontend
+-- move heavy email services to backend
+-- remove all cron related code from Frontend
+-- move upload related code to backend
+
+- Fix Organization Status Toast (sending twice - onMount) - add content
+
+- Configure querying redis before making DB calls (general REDIS layer? key: "table+orgID" o.ä)
+
+- Signup - password pre verification
+
+AWS-Migration: 
+- Update URL-Construction in storage.ts
+- Storage Content Upload: update Database with URL; Vector DB insert; Success Message Frontend - Add Logo / User Avatar Uploads
+
+
+
+- SECURE API ROUTES - getToken() + getSession() + getUser() + getOrganization() / CRON_JOB_SECRET / OTHER SECRETS + (LOGGING for when missing tokens are used)
+
+// DONE - Update E-Mail Send Functions to check for previous E-Mails (should only be in TRPC-Routers) + Write into db -- write into DB -- sendEmail covers writing - check only needed with CRON Jobs
+
+// DONE - Organization Verification JWT into JWT Tokens Table
+
+// NOT NEEDED - Include Subtext on <SearchableTable /> - optional; for dashboard/questions -> display answer count under <tr>
+
+- Add New Question Modal - !! do V-DB Query before Adding !!
+
+- "Use Path" => start Browser Extension + route the User to the first Step of the Path - path slug / ID
+
+- Notification System for Dashboard; Notification DB Table + handleNotification(); Type + amt (anti-spam (group if alr. send / make text generic "You have new answers for your Question."))
+
+- /dashboard/questions?question=ID; always start Chat at Bottom of Scrollcontainer via useRef
+
+// DONE - on Organization Submit => addAllowedDomain() from Admin-Email
+
+- Gamification Functionality - Points System (Leaderboards, Badges, Levels) => for each added Path, good answer (upvoated by OP), 
+- Questions - For Question OP => Allow selecting one (or multiple) Answers as the "Correct" Answer => Add to Vector DB for later Answer Generation
+
+TODO TOMORROW - Bulk Team Migration Integrations (Slack, Microsoft Teams, Asana, Jira, Monday.com, Trello, CSV)
+
+- Dashboard Chat - Allow adding Path / Media to Message
+- Dashboard Chat - Answers - Reply to Answer - Scroll to Answer
+- Dashboard Chat - Websocket connection
+
+Embedding Layer + Vector DB Functions
+
+- Embedding Layer (Vector DB) -> Should be able to handle Keywords, Categories, Tags, etc. + Title
+- handleParseFile() + getFileData(//should be able to get general topic of a file + generate keywords (AI-Powered?)) -> File Upload -> Link to SQL DB via fileID => only store fileID in V-DB
+- handleParsePath() - Path Upload -> Link to SQL DB via pathID => only store pathID in V-DB
+
+Organization
+
+- FOR Cron Jobs + Trial Period: Change Status ENUM: "trial", "trial ended", "active", "pending", "inactive", "onboarding"
+
+- If trying to verify Organization via E-Mail when not signed in first verify USER has a Session (same page or keep token)
+- Bulk Teams Migration (Teams, CSV-Upload)
+- Create New Organization; if Org already exists, Front-End Prompt: "Ask your admin to invite you."
+
+- Prompt Payment Information - After status: "trial-ended"
+- Payment Information - After provided setStatus("active) 
+
+// DONE - Invite Employee - check validity E-Mail Domain -- DONE
+// DONE - Validate Domain on new Organization -- Not needed as we check for email TLD validity + not taking Website URL anyway
+
+
+
+Other:
+
+- Signup TOS
+- Signin TOS
+// - Signin Forgot Password Button
+- Database Encryption - E-Mail
+
+
+CRON Jobs
+
+- 7 Days Reminder Org Pending                                            api/cron/**    send-organization-pending
+- 14 Days Reminder Org marked for Deletion                                              send-organization-marked-for-deletion
+- 30 Days Reminder Org Deleted                                                          send-organization-deleted              
+
+- 27 Days Reminder Org Trial Period Ending                                              send-org-trail-ending
+- 30 Days Reminder Org Trial Period Ended - Prompt for Payment                          send-org-trial-ended-prompt-payment
+
+
+E-Mail Templates - DON'T FORGET TO UPDATE THE EMAIL-TYPES ENUM IN THE DATABASE
+
+User Temps
+- User Password Reset Confirmation
+- User Welcome after Signup
+
+Org Temps
+- Send Organization Welcome after Verification
+- Organization User Added
+
+Reminder
+- Reminder Organization Activation 7 Days
+- Reminder Organization Activation - Marked for Deletion 14 Days
+
+Trial + Payment
+- Trial Period Ending Soon - 27 Days
+- Trial Period Ended, prompt for Payment - 30 Days
+- Organization Payment Information has been set
+- Organization Payment Information has been updated

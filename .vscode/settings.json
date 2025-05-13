@@ -1,0 +1,4 @@
+{
+    "clockingTimer.idleDetection.enable": true,
+    "clockingTimer.pomodoro.enable": true
+}

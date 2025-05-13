@@ -11,12 +11,41 @@ export const env = createEnv({
       process.env.NODE_ENV === "production"
         ? z.string()
         : z.string().optional(),
-    AUTH_DISCORD_ID: z.string(),
-    AUTH_DISCORD_SECRET: z.string(),
+    EXTENSION_AUTH_SECRET:
+      process.env.NODE_ENV === "production"
+        ? z.string()
+        : z.string().optional(),
+
+    ORG_AUTH_SECRET:
+      process.env.NODE_ENV === "production"
+        ? z.string()
+        : z.string().optional(),
+    RESET_PASSWORD_SECRET:
+      process.env.NODE_ENV === "production"
+        ? z.string()
+        : z.string().optional(),
+    CRON_JOB_SECRET:
+      process.env.NODE_ENV === "production"
+        ? z.string()
+        : z.string().optional(),
+
+    QDRANT_URL: z.string(),
+    QDRANT_KEY: z.string(),
+
+    GMAIL_USER: z.string(),
+    GMAIL_PASS: z.string(),
     DATABASE_URL: z.string().url(),
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
+
+    FRONTEND_URL: z.string(),
+    S3_URL: z.string(),
+    BACKEND_API_URL: z.string(),
+    REDIS_PORT: z.string(),
+    REDIS_HOST: z.string(),
+
+    STRIPE_SECRET_KEY: z.string(),
   },
 
   /**
@@ -25,7 +54,8 @@ export const env = createEnv({
    * `NEXT_PUBLIC_`.
    */
   client: {
-    // NEXT_PUBLIC_CLIENTVAR: z.string(),
+    // NEXT_PUBLIC_CLIENTVAR: z.string(),+
+    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string(),
   },
 
   /**
@@ -34,10 +64,28 @@ export const env = createEnv({
    */
   runtimeEnv: {
     AUTH_SECRET: process.env.AUTH_SECRET,
-    AUTH_DISCORD_ID: process.env.AUTH_DISCORD_ID,
-    AUTH_DISCORD_SECRET: process.env.AUTH_DISCORD_SECRET,
+    EXTENSION_AUTH_SECRET: process.env.EXTENSION_AUTH_SECRET,
+    ORG_AUTH_SECRET: process.env.ORG_AUTH_SECRET,
+    RESET_PASSWORD_SECRET: process.env.RESET_PASSWORD_SECRET,
+    CRON_JOB_SECRET: process.env.CRON_JOB_SECRET,
+
+    QDRANT_URL: process.env.QDRANT_URL,
+    QDRANT_KEY: process.env.QDRANT_KEY,
+
+    GMAIL_USER: process.env.GMAIL_USER,
+    GMAIL_PASS: process.env.GMAIL_PASS,
     DATABASE_URL: process.env.DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
+
+    FRONTEND_URL: process.env.FRONTEND_URL,
+    S3_URL: process.env.S3_URL,
+    BACKEND_API_URL: process.env.BACKEND_API_URL,
+    REDIS_PORT: process.env.REDIS_PORT,
+    REDIS_HOST: process.env.REDIS_HOST,
+
+    NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:
+      process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+    STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
