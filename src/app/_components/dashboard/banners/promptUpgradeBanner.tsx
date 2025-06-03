@@ -1,7 +1,7 @@
 import { useState, type Dispatch, type SetStateAction } from "react";
 
 export default function PromptUpgradeBanner() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   if (!isOpen) {
     return null;
@@ -10,6 +10,7 @@ export default function PromptUpgradeBanner() {
   const onClick = () => {
     setIsOpen(false);
   };
+
   return (
     <div className="mb-4 rounded border border-gray-200 bg-gray-50 px-4 py-3 text-gray-700">
       <div className="flex items-center justify-between">

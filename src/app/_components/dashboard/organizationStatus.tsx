@@ -10,9 +10,9 @@ import { toast } from "sonner";
 import { CreditCard, AlertTriangle, X } from "lucide-react";
 import { OrganizationStatus } from "@prisma/client";
 import { useSession } from "next-auth/react";
-import TrialEndedOverlayModal from "./billing/overlays/trialEndedOverlay";
-import { ConfirmationPendingOverlay } from "./billing/overlays/confirmationPendingOverlay";
-import { OnboardingOverlay } from "./billing/overlays/onboardingOverlay";
+import TrialEndedOverlayModal from "./overlays/trialEndedOverlay";
+import { ConfirmationPendingOverlay } from "./overlays/confirmationPendingOverlay";
+import { OnboardingOverlay } from "./overlays/onboardingOverlay";
 
 type OrganizationStatusContextType = {
   status: OrganizationStatus;
@@ -115,7 +115,7 @@ export const StatusAwareWrapper = ({
           {children}
         </>
       )}
-      {organizationStatus === "trial" && children}
+      {organizationStatus === "trial" && <>{children}</>}
       {organizationStatus === "onboarding" && (
         <>
           <OnboardingOverlay />
@@ -123,7 +123,6 @@ export const StatusAwareWrapper = ({
         </>
       )}{" "}
       {/* Implement Onboarding Overlay */}
-      {organizationStatus === "trial" && children}
       {organizationStatus === "trial_ended" &&
         session.data!.user.role === "admin" && (
           <>

@@ -69,9 +69,11 @@ export default function DashboardSettings() {
   }, [params]);
 
   return (
-    <div className="flex h-full w-full flex-col overflow-x-hidden">
+    <div className="flex h-screen w-full flex-col">
       <DashboardNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
-      <div className="flex h-full w-full flex-col">{activeTab.component}</div>
+      <div className="n-[91vh] flex flex-col overflow-y-scroll p-4">
+        {activeTab.component}
+      </div>
     </div>
   );
 }

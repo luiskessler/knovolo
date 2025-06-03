@@ -20,12 +20,13 @@ export const LayoutProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      {pathname === "/posts" && <h1>Welcome to Posts page!</h1>}
       {shouldShowNavbar ? (
-        <div className="hide-scrollbar hide-scrollbar mx-auto min-h-screen w-[90%] max-w-screen">
-          <NavbarComponent />
-          {children}
-        </div>
+        <>
+          <div className="flex flex-col items-center overflow-x-hidden border-white">
+            <NavbarComponent />
+            {children}
+          </div>
+        </>
       ) : (
         <>
           <div className="hide-scrollbar">{children}</div>

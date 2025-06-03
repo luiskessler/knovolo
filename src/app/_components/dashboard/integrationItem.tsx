@@ -25,3 +25,4 @@ export default function IntegrationItem({ name, status, active }: Integration) {
     </div>
   );
 }
+

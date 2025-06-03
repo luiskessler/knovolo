@@ -5,6 +5,13 @@ brew services start/stop redis
 redis-cli
 redis-cli monitor
 
+feature showcase
+- extension (separate place)
+    => automatic stuck-detection 
+    => automatic workflow-suggestions
+    => in-service (website) help via extension
+- 
+
 CACHE ORGANIZATION AS WELL AS USER -> REDIS
 
 https://www.npmjs.com/package/pgvector#prisma

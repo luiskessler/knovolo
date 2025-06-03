@@ -15,6 +15,12 @@ const config = {
       },
     ];
   },
+  experimental: {
+    allowedDevOrigins: [
+      "http://app.localhost:3000",
+      "http://www.localhost:3000",
+    ],
+  },
 };
 
 export default config;

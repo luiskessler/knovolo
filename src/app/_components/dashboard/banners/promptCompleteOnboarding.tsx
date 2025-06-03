@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { OnboardingOverlay } from "../billing/overlays/onboardingOverlay";
+import { OnboardingOverlay } from "../overlays/onboardingOverlay";
 
-export default function PromptCompleteOnboardingBanner() {
+export default function PromptCompleteOnboardingBanneer() {
   const [isOnboardingModalOpen, setIsOnboardingModalOpen] = useState(false);
 
   return (
@@ -11,7 +11,7 @@ export default function PromptCompleteOnboardingBanner() {
       {isOnboardingModalOpen && (
         <OnboardingOverlay externalClose={setIsOnboardingModalOpen} />
       )}
-      <div className="flex flex-1 flex-col items-center justify-center gap-4">
+      <div className="flex h-fit flex-1 flex-col items-center justify-center gap-4">
         <p>
           Please complete the onboarding process access the billing settings.
         </p>
